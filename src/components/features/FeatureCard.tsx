@@ -5,24 +5,20 @@ interface FeatureCardProps {
   decorativeImage: string;
 }
 
-export const FeatureCard = ({ icon, title, description, decorativeImage }: FeatureCardProps) => {
+export const FeatureCard = ({ icon, title, description }: FeatureCardProps) => {
   return (
-    <div className="relative p-6 rounded-xl bg-card border border-border">
-      <div className="flex items-start space-x-4">
+    <div className="relative p-6 rounded-2xl bg-[#1A1A1A] border border-gray-800 hover:border-gray-700 transition-all">
+      <div className="flex flex-col space-y-4">
         <div className="flex-shrink-0">
-          <img src={icon} alt="" className="w-12 h-12" loading="lazy" />
+          <div className="w-10 h-10 bg-[#2A2A2A] rounded-xl flex items-center justify-center">
+            <img src={icon} alt="" className="w-6 h-6" />
+          </div>
         </div>
-        <div className="flex-1">
-          <h3 className="text-lg font-semibold text-card-foreground mb-2">{title}</h3>
-          <p className="text-muted-foreground">{description}</p>
+        <div>
+          <h3 className="text-lg font-medium text-white mb-2">{title}</h3>
+          <p className="text-gray-400 text-sm">{description}</p>
         </div>
       </div>
-      <img 
-        src={decorativeImage} 
-        alt="" 
-        className="absolute top-0 right-0 w-24 h-24 opacity-10" 
-        loading="lazy"
-      />
     </div>
   );
 };

@@ -3,17 +3,22 @@ import { ChevronDown } from "lucide-react";
 
 export const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between p-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex items-center space-x-8">
-        <div className="flex items-center space-x-2">
-          <span className="text-foreground">Home V.1</span>
-          <ChevronDown className="h-4 w-4 text-muted-foreground" />
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-20 py-6 bg-transparent">
+      <div className="flex items-center space-x-12">
+        <img 
+          src="/lovable-uploads/b2f1622c-1ef0-4361-9e20-7325fe5393af.png" 
+          alt="Logo"
+          className="w-8 h-8"
+        />
+        <div className="flex items-center space-x-2 bg-[#1A1A1A] px-4 py-2 rounded-full">
+          <span className="text-white text-sm">Home V.1</span>
+          <ChevronDown className="h-4 w-4 text-gray-400" />
         </div>
-        <div className="hidden md:flex items-center space-x-6">
-          <Button variant="ghost" className="text-foreground">Partners</Button>
-          <Button variant="ghost" className="text-foreground">Benefits</Button>
-          <Button variant="ghost" className="text-foreground">FAQ</Button>
-          <Button variant="ghost" className="text-foreground">Testimonials</Button>
+        <div className="flex items-center space-x-8">
+          <Button variant="ghost" className="text-gray-400 hover:text-white">Partners</Button>
+          <Button variant="ghost" className="text-gray-400 hover:text-white">Benefits</Button>
+          <Button variant="ghost" className="text-gray-400 hover:text-white">FAQ</Button>
+          <Button variant="ghost" className="text-gray-400 hover:text-white">Testimonials</Button>
         </div>
       </div>
     </nav>

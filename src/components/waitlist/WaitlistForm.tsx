@@ -7,23 +7,21 @@ export const WaitlistForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log("Submitted email:", email);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
-      <h2 className="text-2xl font-semibold text-foreground">Get notified on the Release</h2>
+    <form onSubmit={handleSubmit} className="w-full max-w-xl space-y-6">
+      <h2 className="text-xl text-[#8B5CF6] text-center">Get notified on the Release</h2>
       <div className="flex space-x-2">
         <Input
           type="email"
           placeholder="Enter Your Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex-1"
-          required
+          className="flex-1 bg-[#1A1A1A] border-gray-800 text-white placeholder:text-gray-500"
         />
-        <Button type="submit" className="bg-primary text-primary-foreground">
+        <Button type="submit" className="bg-[#8B5CF6] text-white hover:bg-[#7C3AED]">
           Join Waitlist
         </Button>
       </div>

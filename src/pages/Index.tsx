@@ -6,70 +6,72 @@ import { SocialLinks } from "@/components/social/SocialLinks";
 const Index = () => {
   const features = [
     {
-      icon: "https://cdn.builder.io/api/v1/image/assets/0dcc9889982c425e96810c8c6b1274c3/6efff717353a61369aaa5739ab2907e6695e8e5db3202ba9e861717b19432107",
+      icon: "/lovable-uploads/b2f1622c-1ef0-4361-9e20-7325fe5393af.png",
       title: "Priority Support",
       description: "Fast-tracked assistance for early adopters.",
-      decorativeImage: "https://cdn.builder.io/api/v1/image/assets/0dcc9889982c425e96810c8c6b1274c3/6b85f1a6fe1eda7c985bab4e87c689a9b487428a21d8a1581344b36335e29df6"
+      decorativeImage: "/lovable-uploads/b2f1622c-1ef0-4361-9e20-7325fe5393af.png"
     },
     {
-      icon: "https://cdn.builder.io/api/v1/image/assets/0dcc9889982c425e96810c8c6b1274c3/025ee9dc1ff6f08ef7295bbd4f4aef9e920b7ad8b2411e6200aff516df678c49",
+      icon: "/lovable-uploads/b2f1622c-1ef0-4361-9e20-7325fe5393af.png",
       title: "Exclusive Features",
       description: "Access advanced features before others.",
-      decorativeImage: "https://cdn.builder.io/api/v1/image/assets/0dcc9889982c425e96810c8c6b1274c3/867c43e0f59925a07c93241f9fad809bf6fce0654e39779724399299760bbd9f"
+      decorativeImage: "/lovable-uploads/b2f1622c-1ef0-4361-9e20-7325fe5393af.png"
     },
     {
-      icon: "https://cdn.builder.io/api/v1/image/assets/0dcc9889982c425e96810c8c6b1274c3/c86ce72e2f0f6ed5deb4e4b4cde881c3c4e1e7a4f87e01aad71e1a47b02eb5d6",
+      icon: "/lovable-uploads/b2f1622c-1ef0-4361-9e20-7325fe5393af.png",
       title: "Beta Access",
       description: "Be among the first to test new features.",
-      decorativeImage: "https://cdn.builder.io/api/v1/image/assets/0dcc9889982c425e96810c8c6b1274c3/3752da35053035af5438074a7e0adc86ce96342e5bff8153598d86fecd77a2e8"
+      decorativeImage: "/lovable-uploads/b2f1622c-1ef0-4361-9e20-7325fe5393af.png"
     },
     {
-      icon: "https://cdn.builder.io/api/v1/image/assets/0dcc9889982c425e96810c8c6b1274c3/7db7f5e1ea266c1ab9520444bcc77982821641db20abeed78a40dc21629c2afe",
+      icon: "/lovable-uploads/b2f1622c-1ef0-4361-9e20-7325fe5393af.png",
       title: "Personalized Assistance",
       description: "Tailored guidance and support from our team.",
-      decorativeImage: "https://cdn.builder.io/api/v1/image/assets/0dcc9889982c425e96810c8c6b1274c3/97fd207f37e5b0c3c5641999d7fdda9fdae340502b1610a47764c7db1ae7f71f"
+      decorativeImage: "/lovable-uploads/b2f1622c-1ef0-4361-9e20-7325fe5393af.png"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[#0A0A0A] relative overflow-hidden">
       <Navbar />
       
-      <main className="container mx-auto px-4 py-16">
-        <section className="text-center mb-16">
-          <div className="relative inline-block">
+      <main className="container mx-auto px-4 pt-32">
+        <section className="text-center mb-20">
+          <div className="relative inline-block mb-12">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets/0dcc9889982c425e96810c8c6b1274c3/59464fc1707df997628015e457d68eb2be61cc08f127a898ae24f2f951b026f8"
+              src="/lovable-uploads/b2f1622c-1ef0-4361-9e20-7325fe5393af.png"
               alt=""
-              className="w-16 h-16 mx-auto mb-6"
-              loading="lazy"
+              className="w-16 h-16 mx-auto"
             />
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-semibold mb-8">
-            <span className="text-[#E4E4E6] font-['Rethink Sans']">
-              Be the First to get update by Joining Our{" "}
-            </span>
-            <span className="text-[#CED0FC] font-['Baskervville'] italic">
+          <h1 className="text-5xl md:text-6xl font-medium mb-8 text-white">
+            Be the First to get update by{" "}
+            <br />
+            Joining Our{" "}
+            <span className="italic text-[#8B5CF6]">
               Waitlist!
             </span>
           </h1>
         </section>
 
-        <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} />
           ))}
         </section>
 
-        <section className="flex flex-col md:flex-row gap-8 items-start justify-between">
+        <section className="flex flex-col items-center gap-12">
           <WaitlistForm />
-          
-          <div className="w-full md:w-auto bg-card rounded-xl border border-border p-6">
+          <div className="w-full max-w-2xl">
             <SocialLinks />
           </div>
         </section>
       </main>
+
+      {/* 3D Elements */}
+      <div className="absolute top-20 left-20 w-32 h-32 bg-blue-600 rounded-full blur-3xl opacity-20" />
+      <div className="absolute bottom-20 right-20 w-32 h-32 bg-purple-600 rounded-full blur-3xl opacity-20" />
     </div>
   );
 };
