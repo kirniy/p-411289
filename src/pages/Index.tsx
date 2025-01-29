@@ -35,6 +35,28 @@ const Index = () => {
     <div className="min-h-screen bg-[#0A0A0A] relative overflow-hidden">
       <Navbar />
       
+      {/* Floating Decorative Elements */}
+      <img 
+        src="/lovable-uploads/0d8af2e9-f201-4a28-902e-e31433151ac3.png"
+        alt=""
+        className="absolute top-20 left-20 w-32 h-32 animate-float opacity-40"
+      />
+      <img 
+        src="/lovable-uploads/4a8afbc0-fef5-4ca7-baad-2d59b66465d1.png"
+        alt=""
+        className="absolute top-40 right-40 w-32 h-32 animate-float-delayed opacity-40"
+      />
+      <img 
+        src="/lovable-uploads/7539e152-83b2-4440-83d0-898084d88ac1.png"
+        alt=""
+        className="absolute bottom-40 left-40 w-32 h-32 animate-float opacity-40"
+      />
+      <img 
+        src="/lovable-uploads/48ce1067-42e5-417a-acc9-34383c50bb95.png"
+        alt=""
+        className="absolute bottom-20 right-20 w-32 h-32 animate-float-delayed opacity-40"
+      />
+      
       <main className="container mx-auto px-4 pt-32">
         <section className="text-center mb-20">
           <div className="relative inline-block mb-12">
