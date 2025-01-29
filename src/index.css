@@ -1,3 +1,7 @@
+@import '@fontsource/unbounded/400.css';
+@import '@fontsource/unbounded/500.css';
+@import '@fontsource/unbounded/700.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,6 +40,9 @@
   }
   body {
     @apply bg-[#0A0A0A] text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Unbounded', system-ui, sans-serif;
   }
 }
 
