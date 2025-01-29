@@ -4,11 +4,21 @@
   
 [build.environment]
   NODE_VERSION = "18"
+  VITE_APP_BASE_URL = "/"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' fonts.googleapis.com fonts.gstatic.com;"
 
 [dev]
   command = "npm run dev"
