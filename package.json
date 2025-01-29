@@ -5,12 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:v1": "VERSION=v1 vite --config src/versions/v1/config/vite.config.ts",
+    "dev:v2": "VERSION=v2 vite",
     "build": "vite build",
+    "build:v1": "VERSION=v1 vite build --config src/versions/v1/config/vite.config.ts",
+    "build:v2": "VERSION=v2 vite build",
     "build:dev": "vite build --mode development",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preview:v1": "vite preview --config src/versions/v1/config/vite.config.ts",
+    "preview:v2": "vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@fontsource/raleway": "^5.1.1",
+    "@fontsource/unbounded": "^5.1.2",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",

@@ -1,0 +1,319 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --radius: 0.75rem;
+  }
+  html {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#0A0A0A] text-foreground;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-[#1A1A1A]/60 backdrop-blur-xl border border-white/[0.05] shadow-xl;
+  }
+  
+  .glass-button {
+    @apply relative overflow-hidden
+           bg-gradient-to-br from-[#8B5CF6]/80 via-[#7C3AED]/80 to-[#6D28D9]/80
+           backdrop-blur-xl
+           border border-white/20
+           shadow-[inset_0_0_7px_rgba(255,255,255,0.2)]
+           hover:shadow-[inset_0_0_10px_rgba(255,255,255,0.3)]
+           before:absolute before:inset-0
+           before:bg-gradient-to-br
+           before:from-transparent before:via-white/5 before:to-transparent
+           before:translate-y-[100%]
+           hover:before:translate-y-[-100%]
+           before:transition-transform before:duration-500
+           after:absolute after:inset-[1px]
+           after:bg-gradient-to-br
+           after:from-white/10 after:to-transparent
+           after:rounded-[inherit]
+           after:opacity-0
+           hover:after:opacity-100
+           after:transition-opacity after:duration-500
+           hover:scale-[1.02]
+           hover:border-white/30
+           active:scale-[0.98]
+           transition-all duration-300 ease-out
+           text-white/90 hover:text-white
+           px-6 py-2 rounded-xl;
+  }
+
+  .glass-button-large {
+    @apply glass-button
+           text-lg
+           px-8 py-4
+           rounded-2xl
+           shadow-[inset_0_0_15px_rgba(255,255,255,0.2),0_8px_20px_-8px_rgba(139,92,246,0.5)]
+           hover:shadow-[inset_0_0_20px_rgba(255,255,255,0.3),0_8px_25px_-5px_rgba(139,92,246,0.6)];
+  }
+
+  .glass-nav-button {
+    @apply relative overflow-hidden
+           bg-transparent
+           hover:bg-white/5
+           backdrop-blur-sm
+           border border-transparent
+           hover:border-white/10
+           rounded-lg
+           transition-all duration-300
+           text-white/80 hover:text-white
+           hover:shadow-[inset_0_0_20px_rgba(255,255,255,0.1)]
+           before:absolute before:inset-0
+           before:bg-gradient-to-r
+           before:from-transparent before:via-white/5 before:to-transparent
+           before:translate-x-[-100%]
+           hover:before:translate-x-[100%]
+           before:transition-transform before:duration-500;
+  }
+
+  .glass-input {
+    @apply bg-white/5 backdrop-blur-xl border border-white/[0.05] shadow-lg
+           focus:border-[#8B5CF6]/50 focus:ring-[#8B5CF6]/50
+           transition-all duration-300;
+  }
+
+  .glass-nav {
+    @apply bg-black/30 backdrop-blur-xl border-b border-white/[0.05] shadow-lg;
+  }
+
+  .hover-card {
+    @apply hover:shadow-2xl hover:shadow-[#8B5CF6]/10 hover:scale-[1.02] hover:border-[#8B5CF6]/20
+           transition-all duration-300 ease-out cursor-pointer;
+  }
+
+  /* Base glass effect styles */
+  .glass-card-enhanced {
+    @apply relative overflow-hidden
+           bg-gradient-to-br from-[#1A1A1A]/80 via-[#1A1A1A]/70 to-[#1A1A1A]/60
+           backdrop-blur-xl
+           border border-white/[0.08]
+           shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_8px_20px_-8px_rgba(0,0,0,0.3)]
+           hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_12px_30px_-8px_rgba(139,92,246,0.15)]
+           before:absolute before:inset-0
+           before:bg-gradient-to-br
+           before:from-white/[0.08] before:to-transparent
+           before:opacity-0 hover:before:opacity-100
+           before:transition-opacity before:duration-300
+           hover:border-white/[0.12]
+           transition-all duration-300 ease-out;
+  }
+
+  .glass-card-enhanced-hover {
+    @apply glass-card-enhanced
+           hover:scale-[1.02]
+           after:absolute after:inset-0
+           after:bg-[length:200%_200%]
+           after:bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%)]
+           after:[background-position:0%_0%]
+           hover:after:[background-position:100%_100%]
+           after:transition-[background-position] after:duration-500;
+  }
+
+  /* Specialized card variants */
+  .glass-stat-card {
+    @apply glass-card-enhanced-hover
+           bg-gradient-to-br from-[#1A1A1A]/90 via-[#1A1A1A]/80 to-[#1A1A1A]/70
+           shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_-8px_rgba(59,130,246,0.25)]
+           hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_12px_30px_-8px_rgba(139,92,246,0.3),0_0_20px_rgba(59,130,246,0.25)];
+  }
+
+  .glass-event-card {
+    @apply glass-card-enhanced-hover
+           bg-gradient-to-br from-[#1A1A1A]/90 via-[#1A1A1A]/80 to-[#1A1A1A]/70
+           shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_-8px_rgba(59,130,246,0.2)]
+           hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_12px_30px_-8px_rgba(139,92,246,0.25),0_0_20px_rgba(59,130,246,0.2)];
+  }
+
+  .glass-feature-card {
+    @apply glass-card-enhanced-hover
+           bg-gradient-to-br from-[#1A1A1A]/90 via-[#1A1A1A]/80 to-[#1A1A1A]/70
+           shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_-8px_rgba(59,130,246,0.25)]
+           hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_12px_30px_-8px_rgba(139,92,246,0.3),0_0_20px_rgba(59,130,246,0.25)];
+  }
+
+  .glass-location-card {
+    @apply glass-card-enhanced
+           bg-gradient-to-br from-[#1A1A1A]/95 via-[#1A1A1A]/90 to-[#1A1A1A]/85
+           shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_20px_-8px_rgba(59,130,246,0.05)]
+           hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_12px_30px_-8px_rgba(139,92,246,0.15)];
+  }
+
+  /* Button styles */
+  .glass-button-enhanced {
+    @apply relative
+           bg-gradient-to-br from-[#8B5CF6]/90 via-[#7C3AED]/90 to-[#6D28D9]/90
+           backdrop-blur-xl
+           border-0
+           shadow-[inset_0_0_10px_rgba(255,255,255,0.3),0_4px_10px_rgba(139,92,246,0.2),0_0_15px_rgba(59,130,246,0.2)]
+           hover:shadow-[inset_0_0_15px_rgba(255,255,255,0.4),0_8px_20px_rgba(139,92,246,0.3),0_0_20px_rgba(59,130,246,0.25)]
+           rounded-xl
+           px-4 py-2.5
+           transition-all duration-300 ease-out
+           text-white text-sm font-medium
+           hover:scale-[1.02] active:scale-[0.98]
+           before:absolute before:inset-0
+           before:bg-gradient-to-br
+           before:from-white/20 before:to-transparent
+           before:opacity-0 hover:before:opacity-100
+           before:transition-opacity before:duration-300
+           after:absolute after:inset-0
+           after:bg-[length:200%_200%]
+           after:bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)]
+           after:[background-position:0%_0%]
+           hover:after:[background-position:100%_100%]
+           after:transition-[background-position] after:duration-500;
+  }
+
+  .glass-button-enhanced-large {
+    @apply glass-button-enhanced
+           text-lg
+           px-12 py-6
+           rounded-2xl
+           min-w-[240px]
+           shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_8px_20px_rgba(139,92,246,0.3),0_4px_0_#6D28D9,0_0_20px_rgba(59,130,246,0.2)]
+           hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_12px_30px_rgba(139,92,246,0.4),0_4px_0_#6D28D9,0_0_30px_rgba(59,130,246,0.3)]
+           active:shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),0_4px_10px_rgba(139,92,246,0.3),0_2px_0_#6D28D9]
+           active:translate-y-[2px];
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+@keyframes float-1 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(10px, -15px) rotate(5deg);
+  }
+  66% {
+    transform: translate(-10px, -25px) rotate(-5deg);
+  }
+}
+
+@keyframes float-2 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(-15px, -20px) rotate(-3deg);
+  }
+  66% {
+    transform: translate(15px, -30px) rotate(3deg);
+  }
+}
+
+@keyframes float-3 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(20px, -25px) rotate(8deg);
+  }
+  66% {
+    transform: translate(-20px, -15px) rotate(-8deg);
+  }
+}
+
+@keyframes float-4 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(-25px, -30px) rotate(-6deg);
+  }
+  66% {
+    transform: translate(25px, -20px) rotate(6deg);
+  }
+}
+
+.animate-float-1 {
+  animation: float-1 8s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-2 9s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-float-3 {
+  animation: float-3 10s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.animate-float-4 {
+  animation: float-4 11s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+@keyframes float-vertical {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float-vertical {
+  animation: float-vertical 6s ease-in-out infinite;
+}

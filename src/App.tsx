@@ -1,47 +1,54 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { VersionProvider } from './lib/context/version-context';
-import { VersionSwitcher } from './components/VersionSwitcher';
-import { useVersion } from './lib/context/version-context';
-import React from 'react';
+import { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from '@/components/ui/toaster';
+import { Toaster as Sonner } from '@/components/ui/sonner';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { VersionProvider } from '@/lib/context/version-context';
+import { useVersion } from '@/lib/context/version-context';
+import { queryClient } from '@/lib/query-client';
+import { VersionSwitcher } from '@/components/VersionSwitcher';
 
-// Import version-specific components
-const V1Index = React.lazy(() => import('./versions/v1/pages/Index'));
-const V2Index = React.lazy(() => import('./pages/Index'));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
-
-const queryClient = new QueryClient();
+// Lazy load version-specific pages instead of entire apps
+const V1Index = lazy(() => import('@v1/pages/Index'));
+const V2Index = lazy(() => import('@/pages/Index'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
 
 function AppContent() {
-  const { currentVersion } = useVersion();
+  const { version } = useVersion();
 
   return (
-    <React.Suspense fallback={<div>Loading...</div>}>
-      {currentVersion === 'v1' ? <V1Index /> : <V2Index />}
-      <VersionSwitcher />
-    </React.Suspense>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Suspense 
+          fallback={
+            <div className="flex h-screen w-screen items-center justify-center">
+              <div className="text-lg">Loading...</div>
+            </div>
+          }
+        >
+          <Routes>
+            <Route 
+              path="/" 
+              element={version === 'v1' ? <V1Index /> : <V2Index />} 
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+        <VersionSwitcher />
+        <Toaster />
+        <Sonner />
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 }
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <VersionProvider>
-          <Routes>
-            <Route path="/" element={<AppContent />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </VersionProvider>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
-
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <VersionProvider>
+        <AppContent />
+      </VersionProvider>
+    </BrowserRouter>
+  );
+}

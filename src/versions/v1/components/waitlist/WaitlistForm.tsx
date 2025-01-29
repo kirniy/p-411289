@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "@v1/components/ui/button";
+import { Input } from "@v1/components/ui/input";
 import { useState } from "react";
 
 export const WaitlistForm = () => {

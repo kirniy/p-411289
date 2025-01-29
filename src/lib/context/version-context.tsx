@@ -1,33 +1,27 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { WebsiteVersion } from '../types/version';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { Version, DEFAULT_VERSION } from '@shared/types/version';
+
+const VERSION_STORAGE_KEY = 'app_version';
 
 interface VersionContextType {
-  currentVersion: WebsiteVersion;
-  setVersion: (version: WebsiteVersion) => void;
+  version: Version;
+  setVersion: (version: Version) => void;
 }
 
 const VersionContext = createContext<VersionContextType | undefined>(undefined);
 
-const VERSION_KEY = 'website_version';
-
 export function VersionProvider({ children }: { children: React.ReactNode }) {
-  const [currentVersion, setCurrentVersion] = useState<WebsiteVersion>(() => {
-    const savedVersion = localStorage.getItem(VERSION_KEY);
-    return (savedVersion as WebsiteVersion) || 'v1';
+  const [version, setVersion] = useState<Version>(() => {
+    const storedVersion = localStorage.getItem(VERSION_STORAGE_KEY);
+    return (storedVersion as Version) || DEFAULT_VERSION;
   });
 
   useEffect(() => {
-    localStorage.setItem(VERSION_KEY, currentVersion);
-  }, [currentVersion]);
-
-  const setVersion = (version: WebsiteVersion) => {
-    setCurrentVersion(version);
-    // Force reload to ensure all components are properly updated
-    window.location.reload();
-  };
+    localStorage.setItem(VERSION_STORAGE_KEY, version);
+  }, [version]);
 
   return (
-    <VersionContext.Provider value={{ currentVersion, setVersion }}>
+    <VersionContext.Provider value={{ version, setVersion }}>
       {children}
     </VersionContext.Provider>
   );

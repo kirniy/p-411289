@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@v1/components/ui/button";
 
 export const Navbar = () => {
   return (

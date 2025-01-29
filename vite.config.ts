@@ -11,12 +11,42 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
+    mode === 'development' && [
+      componentTagger({
+        prefix: process.env.VERSION === 'v1' ? 'v1-' : 'v2-'
+      }),
+    ],
   ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@v1": path.resolve(__dirname, "./src/versions/v1"),
+      "@shared": path.resolve(__dirname, "./src/shared"),
     },
   },
+  build: {
+    sourcemap: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        v1: path.resolve(__dirname, 'src/versions/v1/index.html')
+      },
+      output: {
+        manualChunks: {
+          'vendor': [
+            'react',
+            'react-dom',
+            'react-router-dom',
+            '@tanstack/react-query'
+          ],
+          'ui': [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-popover',
+            '@radix-ui/react-tooltip',
+            // Add other UI component imports
+          ]
+        }
+      }
+    }
+  }
 }));
