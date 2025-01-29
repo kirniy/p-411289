@@ -1,3 +1,7 @@
+@import '@fontsource/unbounded/400.css';
+@import '@fontsource/unbounded/500.css';
+@import '@fontsource/unbounded/700.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,6 +31,9 @@
   }
   html {
     font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Unbounded', system-ui, sans-serif;
   }
 }
 

@@ -1,35 +1,33 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   server: {
     host: "127.0.0.1",
     port: 3000,
   },
   plugins: [
     react(),
-    mode === 'development' && [
-      componentTagger({
-        prefix: process.env.VERSION === 'v1' ? 'v1-' : 'v2-'
-      }),
-    ],
-  ].filter(Boolean),
+    componentTagger(),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "@v1": path.resolve(__dirname, "./src/versions/v1"),
+      "@v2": path.resolve(__dirname, "./src/versions/v2"),
       "@shared": path.resolve(__dirname, "./src/shared"),
     },
   },
   build: {
+    outDir: 'dist',
+    emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
       input: {
-        main: path.resolve(__dirname, 'index.html'),
-        v1: path.resolve(__dirname, 'src/versions/v1/index.html')
+        main: path.resolve(__dirname, 'index.html')
       },
       output: {
         manualChunks: {
@@ -42,8 +40,7 @@ export default defineConfig(({ mode }) => ({
           'ui': [
             '@radix-ui/react-dialog',
             '@radix-ui/react-popover',
-            '@radix-ui/react-tooltip',
-            // Add other UI component imports
+            '@radix-ui/react-tooltip'
           ]
         }
       }
